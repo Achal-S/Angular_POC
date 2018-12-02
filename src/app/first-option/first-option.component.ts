@@ -18,7 +18,8 @@ export class FirstOptionComponent implements OnInit {
   settings = {
     columns: {
       id: {
-        title: 'ID'
+        title: 'ID',
+        editable:false
       },
       employee_name: {
         title: 'Employee Name'
