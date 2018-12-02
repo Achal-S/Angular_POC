@@ -1,21 +1,4 @@
-<table class="table_box">
-    <thead>
-    <tr>
-        <td>Employee Name</td>
-        <td>Employee Salary</td>
-        <td>Employee age</td>
-
-    </tr>
-    </thead>
-
-    <tbody>
-        <tr *ngFor="let employee of employees | paginate: { itemsPerPage: 5, currentPage: p }; let i = index">
-            <td>{{ employee.employee_name}}</td>
-            <td>{{ employee.employee_salary }}</td>
-            <td>{{ employee.employee_age }}</td>
-           <!-- <td><a [routerLink]="['/edit', business._id]" class="btn btn-primary">Edit</a></td>-->
-            <!--<td><a [routerLink]="" class="btn btn-danger">Delete</a></td>-->
-        </tr>
-    </tbody>
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-  </table>
+<ng2-smart-table
+    [settings]="settings"
+    [source]="employees">
+</ng2-smart-table>
