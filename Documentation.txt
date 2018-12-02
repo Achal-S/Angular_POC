@@ -1,0 +1,4 @@
+npm install ng2-completer --save-dev
+npm install --save ng2-smart-table
+NgxPaginationModule
+import { Ng2SmartTableModule } from 'ng2-smart-table';
