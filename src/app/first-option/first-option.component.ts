@@ -3,9 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { Employee } from 'src/app/model/employee';
 
 
-
-
-
 @Component({
   selector: 'app-first-option',
   templateUrl: './first-option.component.html',
@@ -16,6 +13,15 @@ export class FirstOptionComponent implements OnInit {
   constructor(private empService:EmployeeService) { }
 
   settings = {
+    pager : {
+      display : true
+      },
+      actions : {
+
+        add:true,
+        edit:true,
+        delete:true
+        },
     columns: {
       id: {
         title: 'ID',
@@ -34,7 +40,7 @@ export class FirstOptionComponent implements OnInit {
   };
 
   ngOnInit() {
-
+    //this.settings.pager.display = true;
     this.empService
       .getEmployees()
       .subscribe((data: Employee[]) => {
