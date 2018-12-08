@@ -1,7 +1,9 @@
 import { EmployeeService } from './service/employee.service';
 
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
@@ -15,6 +17,10 @@ import { ThirdOptionComponent } from './third-option/third-option.component';
 import { HttpClientModule } from '@angular/common/http';
 import {NgxPaginationModule} from 'ngx-pagination';
 
+import { Ng2TableModule } from './components/ng-table-module';
+import { RowContentComponent } from './second-option/row-content/row-content.component';
+
+
 
 @NgModule({
   declarations: [
@@ -22,7 +28,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HomeComponent,
     FirstOptionComponent,
     SecondOptionComponent,
-    ThirdOptionComponent
+    ThirdOptionComponent,
+    RowContentComponent
   ],
   imports: [
     BrowserModule,
@@ -30,10 +37,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
     AppRoutingModule,
     Ng2SmartTableModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    Ng2TableModule
   ],
   providers: [EmployeeService],
   bootstrap: [AppComponent],
+  entryComponents: [RowContentComponent]
 
 
 })
