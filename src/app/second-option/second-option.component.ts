@@ -10,7 +10,7 @@ import { TableData } from 'src/app/second-option/table-data';
 export class SecondOptionComponent implements OnInit {
   public rows:Array<any> = [];
   public columns:Array<any> = [
-    {title: 'Name', name: 'name', filtering: {filterString: '', placeholder: 'Filter by name'},editWith: 'position'},
+    {title: 'Name', name: 'name', filtering: {filterString: '', placeholder: 'Filter by name'}},
     {title: 'Office', name: 'office', editable:true, options:["France", "Venezuela", "Macao"],editWith: 'position'},
     {title: 'Salary ($)', name: 'salary', editable: true, editWith: 'position'},
     {
@@ -31,9 +31,8 @@ export class SecondOptionComponent implements OnInit {
 
 
   public config:any = {
-    paging: false,
+    paging: true,
     sorting: {columns: this.columns},
-    filtering: {filterString: ''},
     className: ['table-striped', 'table-bordered'],
     height: '50vh',
     renderMoreAt : 0.85,

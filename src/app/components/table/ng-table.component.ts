@@ -8,16 +8,13 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 })
 export class NgTableComponent {
   // Table values
-  @Input() expandedComponent:any;
+
   @Input() public rows:Array<any> = [];
-  @Input() public expandable:boolean;
   @Input() public editingRow:number;
   @Input() public editingColumn:number;
   @Input()
   public set config(conf:any) {
-    if (conf.className instanceof Array) {
-      conf.className = conf.className.join(' ');
-    }
+
     this._config = conf;
   }
 
@@ -25,24 +22,15 @@ export class NgTableComponent {
   // Outputs (Events)
   @Output() public tableChanged:EventEmitter<any> = new EventEmitter();
   @Output() public cellClicked:EventEmitter<any> = new EventEmitter();
-  @Output() public expanderClicked:EventEmitter<any> = new EventEmitter();
   @Output() public scrolledDown:EventEmitter<any> = new EventEmitter();
   @Output() public valueEdit:EventEmitter<any> = new EventEmitter();
 
-  public showFilterRow:Boolean = false;
-  public showExpandedRow:Boolean = false;
-  public expandedRowIndex:number = null;
   public currentChanges: any = {};
 
   @Input()
   public set columns(values:Array<any>) {
     values.forEach((value:any) => {
-      if (value.filtering) {
-        this.showFilterRow = true;
-      }
-      if (value.className && value.className instanceof Array) {
-        value.className = value.className.join(' ');
-      }
+
       let column = this._columns.find((col:any) => col.name === value.name);
       if (column) {
         Object.assign(column, value);
@@ -57,12 +45,10 @@ export class NgTableComponent {
   private _config:any = {};
   public scrollPercentage:number = 0;
 
-  public constructor(private sanitizer:DomSanitizer, public ref: ChangeDetectorRef, private componentFactoryResolver: ComponentFactoryResolver, private compiler: Compiler) {
+  public constructor( public ref: ChangeDetectorRef, private componentFactoryResolver: ComponentFactoryResolver, private compiler: Compiler) {
   }
 
-  public sanitize(html:string):SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(html);
-  }
+
 
   public get columns():Array<any> {
     return this._columns;
@@ -90,24 +76,11 @@ export class NgTableComponent {
         col.sort = '';
       }
     });
-    this.showExpandedRow = false;
-    this.expandedRowIndex = null;
     this.tableChanged.emit({sorting: this.configColumns});
     this.ref.markForCheck();
   }
 
-  public toggleRowExpansion(row:any, rowNum:number) {
-      if (this.showExpandedRow && (this.expandedRowIndex == rowNum)) {
-          this.showExpandedRow = false;
-          this.expandedRowIndex = null;
-      }
-      else {
-          this.showExpandedRow = true;
-          this.expandedRowIndex = rowNum;
-          this.expanderClicked.emit({ row: row, rowNum: rowNum });
-          this.ref.markForCheck();
-      }
-  };
+
 
   public checkScroll(event:any) {
       this.scrollPercentage = event.target.scrollTop / (event.target.scrollHeight - event.target.clientHeight);

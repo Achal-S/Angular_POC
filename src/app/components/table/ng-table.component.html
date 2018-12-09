@@ -3,7 +3,6 @@
          role="grid" style="width: 100%;" >
     <thead>
       <tr role="row">
-        <th *ngIf="expandable"></th>
         <th *ngFor="let column of columns" [ngTableSorting]="config" [column]="column"
             (sortChanged)="onChangeTable($event)" ngClass="{{column.className || ''}}">
           {{column.title}}
@@ -13,25 +12,14 @@
       </tr>
     </thead>
     <tbody>
-    <tr *ngIf="showFilterRow">
-      <td *ngIf="expandable"></td>
-      <td *ngFor="let column of columns">
-        <input *ngIf="column.filtering" placeholder="{{column.filtering.placeholder}}"
-               [ngTableFiltering]="column.filtering"
-               class="form-control"
-               style="width: 85%; padding:none;"
-               (tableChanged)="onChangeTable(config)"/>
-      </td>
-    </tr>
+
       <ng-template ngFor let-row [ngForOf]="rows" let-i= "index" >
-      <tr [ngClass]="{'table-info': showExpandedRow && (i == expandedRowIndex) && expandable }">
-        <td (click)="toggleRowExpansion(row, i)" *ngIf="expandable" (click)="cellClick(row, 'expand', i)" style="text-align:center; padding:0px; padding-top:7px;"><a style="width:100%; text-align:center;">
-          <i [ngClass]="{'fa': true, 'fa-plus-circle': i != expandedRowIndex, 'fa-minus-circle' : i == expandedRowIndex}" style="font-size:1.5em; cursor:pointer"></i></a>
-        </td>
+      <tr >
+
           <ng-template ngFor let-column [ngForOf]="columns" let-j= "index" >
 
             <td (click)="cellClick(row, column.name, i)" *ngIf="!column.isEditing || editingRow != i">
-              <div style="display:inline-block" [innerHtml]="sanitize(getData(row, column.name))"> </div>
+              <div style="display:inline-block" > {{getData(row, column.name)}}</div>
               <span class="pull-right" *ngIf="column.editable && !column.editWith"><i class="fa fa-pencil" aria-hidden="true" (click)="setRowToEdit(i, j)"></i></span>
             </td>
 
@@ -47,11 +35,7 @@
             </td>
           </ng-template>
       </tr>
-      <tr *ngIf="showExpandedRow && (i == expandedRowIndex) && expandable" class="table-info" >
-          <td [attr.colspan]="columns.length + 1">
-            <ng-table-row [rowComponent]="expandedComponent"></ng-table-row>
-          </td>
-      </tr>
+
       </ng-template>
     </tbody>
   </table>
