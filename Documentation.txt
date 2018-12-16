@@ -9,3 +9,33 @@ https://mazdik.github.io/ng-crud-table/#/
 https://github.com/swimlane/ngx-datatable
 https://github.com/ggmod/angular-5-data-table/blob/master/src/app/data-table/components/pagination.html
 https://github.com/WindMay/angular-tablita/blob/master/src/tablita.component.ts
+
+
+
+
+
+
+
+
+
+
+https://medium.com/@MugayiTimothy/if-anyone-is-doing-above-and-wants-to-add-spring-fox-swagger-to-pageable-then-below-should-allow-dfaf5505da46
+
+@ApiOperation("Get advertiser listing")
+@ApiImplicitParams({
+        @ApiImplicitParam(name = "page", dataType = "integer", paramType = "query",
+                value = "Results page you want to retrieve (0..N)"),
+        @ApiImplicitParam(name = "size", dataType = "integer", paramType = "query",
+                value = "Number of records per page."),
+        @ApiImplicitParam(name = "sort", allowMultiple = true, dataType = "string", paramType = "query",
+                value = "Sorting criteria in the format: property(,asc|desc). " +
+                        "Default sort order is ascending. " +
+                        "Multiple sort criteria are supported.")
+})
+
+
+@PageableDefault(page = DEFAULT_PAGE_NUMBER, size = DEFAULT_PAGE_SIZE)
+ @SortDefault.SortDefaults({
+ @SortDefault(sort = "dateRecorded", direction = Sort.Direction.DESC),
+ @SortDefault(sort = "encounterId", direction = Sort.Direction.ASC)
+  })Pageable pageable
