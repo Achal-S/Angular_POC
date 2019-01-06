@@ -10,6 +10,7 @@ https://github.com/swimlane/ngx-datatable
 https://github.com/ggmod/angular-5-data-table/blob/master/src/app/data-table/components/pagination.html
 https://github.com/WindMay/angular-tablita/blob/master/src/tablita.component.ts
 https://mherman.org/blog/authentication-in-angular-with-ngrx/
+https://github.com/Achal-S/angular-auth-ngrx
 
 
 
